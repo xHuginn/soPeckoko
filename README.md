@@ -8,6 +8,19 @@
 
  - Avant de commencer, vous devrez cloner le frontend de l'application à [cette adresse.](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) :blush:
 
+
+**IMPORTANT** 
+
+Pour des raisons de sécurité, il vous sera necessaire de créer un fichier ```.env``` dans votre dossier backend. Vous devrez ensuite écrire ce qui suit : 
+
+ ```
+DB_USER=UserName
+DB_PASSWORD=Password
+DB_BDD=Bdd
+ ```
+
+Afin d'obtenir les variables **UserName**, **Password** et **Bdd** il vous suffit de m'envoyer un mail à [cette adresse.](mailto:etienneromain26@gmail.com?subject=[GitHub]%20demande%20de%20mot%20de%20passe)
+
 ## :blue_book: Installation
 
 ####  :mag: Côté Frontend :
@@ -52,5 +65,6 @@ Il faut les installer afin de s'assurer du bon fonctionnement de l'application :
 - Mongoose
 - Mongoose-unique-validator
 - Jsonwebtoken
+- Express-rate-limit
 
 (vous pouvez également aller sur le fichier installer.txt pour les commandes)
