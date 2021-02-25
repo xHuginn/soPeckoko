@@ -1,0 +1,33 @@
+1- npm install -g @angular/cli   !!
+
+2- git clone 'lien' frontend
+
+3- cd frontend + ng serve
+
+4- npm install
+
+5- cd backend + nodemon server
+
+6- npm init
+
+7- npm install -g nodemon
+
+8- npm install --save express
+
+9- npm install --save body-parser
+
+10- Créer un cluster MongoDB
+
+UOoUFNBftuH3nQKaACAAA
+
+11- npm install --save mongoose
+
+12- npm install --save mongoose-unique-validator
+
+13- npm install --save bcrypt
+
+14- npm install --save jsonwebtoken
+
+15- npm install --save multer
+
+16- npm i cors
