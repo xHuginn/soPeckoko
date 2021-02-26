@@ -26,12 +26,11 @@ app.use(bodyParser.json())
 
 app.use(helmet())
 
-app.use(
-  rateLimit({
-    windowMs: 8 * 60 * 1000, 
-    max: 25,
-  }),
-);
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100 
+});
+app.use(limiter);
 
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
