@@ -1,9 +1,16 @@
 // On récupère les packages
 
+<<<<<<< HEAD
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const validator = require("validator");
+=======
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const validator = require('validator')
+>>>>>>> f3f847187f504b991eb5e43c9aac2dc1b8eb4f5a
 
 // Fonction pour inscription
 exports.signup = (req, res) => {
@@ -24,6 +31,7 @@ exports.signup = (req, res) => {
       });
     return;
   }
+<<<<<<< HEAD
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -39,6 +47,21 @@ exports.signup = (req, res) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+=======
+    bcrypt.hash(req.body.password, 10)
+      .then(hash => {
+        const user = new User({
+          email: req.body.email,
+          // On présice que le mdp est le hash
+          password: hash
+        });
+        user.save()
+          .then(() => res.status(201).json({ message: 'Compte créé !' }))
+          .catch(error => res.status(400).json({ error }));
+      })
+      .catch(error => res.status(500).json({ error }));
+  };
+>>>>>>> f3f847187f504b991eb5e43c9aac2dc1b8eb4f5a
 
 // Fonction pour connexion
 exports.login = (req, res) => {
@@ -55,6 +78,7 @@ exports.login = (req, res) => {
     return;
   }
   // Si c'est bon alors on cherche l'email de l'utilisateur
+<<<<<<< HEAD
   User.findOne({ email: req.body.email })
     .then((user) => {
       // Si on ne le trouve pas on indique un message d'erreur
@@ -80,3 +104,31 @@ exports.login = (req, res) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+=======
+    User.findOne({ email: req.body.email })
+      .then(user => {
+        // Si on ne le trouve pas on indique un message d'erreur
+        if (!user) {
+          return res.status(401).json({ error: 'Compte non trouvé !' });
+        }
+        // Si c'est bon alors on compare le mdp écrit et le mdp enregistré
+        bcrypt.compare(req.body.password, user.password)
+          .then(valid => {
+            if (!valid) {
+              return res.status(401).json({ error: 'Mot de passe incorrect !' });
+            }
+            // Si c'est ok alors on logue l'utilisateur
+            res.status(200).json({
+              userId: user._id,
+              token: jwt.sign(
+                { userId: user._id },
+                'RANDOM_TOKEN_SECRET',
+                { expiresIn: '24h' }
+              )
+            });
+          })
+          .catch(error => res.status(500).json({ error }));
+      })
+      .catch(error => res.status(500).json({ error }));
+  };
+>>>>>>> f3f847187f504b991eb5e43c9aac2dc1b8eb4f5a
